@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C1ECF98B1F32F44E00F40F05 /* HJExcelHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF7E21F32F44E00F40F05 /* HJExcelHeadView.m */; };
+		C1ECF98C1F32F44E00F40F05 /* HJExcelReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF7E51F32F44E00F40F05 /* HJExcelReusableView.m */; };
+		C1ECF9FA1F32F44E00F40F05 /* HJExcelTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF9641F32F44E00F40F05 /* HJExcelTableView.m */; };
+		C1ECF9FB1F32F44E00F40F05 /* HJExcelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF9671F32F44E00F40F05 /* HJExcelTableViewCell.m */; };
+		C1ECFA051F32F44E00F40F05 /* HJExcelTableViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF97A1F32F44E00F40F05 /* HJExcelTableViewLayout.m */; };
+		C1ECFA061F32F44E00F40F05 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF97D1F32F44E00F40F05 /* AppDelegate.m */; };
+		C1ECFA071F32F44E00F40F05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1ECF97E1F32F44E00F40F05 /* Assets.xcassets */; };
+		C1ECFA081F32F44E00F40F05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1ECF97F1F32F44E00F40F05 /* LaunchScreen.storyboard */; };
+		C1ECFA091F32F44E00F40F05 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1ECF9811F32F44E00F40F05 /* Info.plist */; };
+		C1ECFA0A1F32F44E00F40F05 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF9821F32F44E00F40F05 /* main.m */; };
+		C1ECFA0B1F32F44E00F40F05 /* TestExcelHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF9841F32F44E00F40F05 /* TestExcelHeadView.m */; };
+		C1ECFA0C1F32F44E00F40F05 /* TestExcelReusableFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF9861F32F44E00F40F05 /* TestExcelReusableFootView.m */; };
+		C1ECFA0D1F32F44E00F40F05 /* TestExcelReusableHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF9881F32F44E00F40F05 /* TestExcelReusableHeadView.m */; };
+		C1ECFA0E1F32F44E00F40F05 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF98A1F32F44E00F40F05 /* TestViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C148E1F31F2AC4AA002C81A0 /* HJExcelTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HJExcelTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1ECF7E11F32F44E00F40F05 /* HJExcelHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelHeadView.h; sourceTree = "<group>"; };
+		C1ECF7E21F32F44E00F40F05 /* HJExcelHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelHeadView.m; sourceTree = "<group>"; };
+		C1ECF7E41F32F44E00F40F05 /* HJExcelReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelReusableView.h; sourceTree = "<group>"; };
+		C1ECF7E51F32F44E00F40F05 /* HJExcelReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelReusableView.m; sourceTree = "<group>"; };
+		C1ECF9631F32F44E00F40F05 /* HJExcelTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelTableView.h; sourceTree = "<group>"; };
+		C1ECF9641F32F44E00F40F05 /* HJExcelTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelTableView.m; sourceTree = "<group>"; };
+		C1ECF9661F32F44E00F40F05 /* HJExcelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelTableViewCell.h; sourceTree = "<group>"; };
+		C1ECF9671F32F44E00F40F05 /* HJExcelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelTableViewCell.m; sourceTree = "<group>"; };
+		C1ECF9791F32F44E00F40F05 /* HJExcelTableViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelTableViewLayout.h; sourceTree = "<group>"; };
+		C1ECF97A1F32F44E00F40F05 /* HJExcelTableViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelTableViewLayout.m; sourceTree = "<group>"; };
+		C1ECF97C1F32F44E00F40F05 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C1ECF97D1F32F44E00F40F05 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C1ECF97E1F32F44E00F40F05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C1ECF9801F32F44E00F40F05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C1ECF9811F32F44E00F40F05 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1ECF9821F32F44E00F40F05 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C1ECF9831F32F44E00F40F05 /* TestExcelHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestExcelHeadView.h; sourceTree = "<group>"; };
+		C1ECF9841F32F44E00F40F05 /* TestExcelHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestExcelHeadView.m; sourceTree = "<group>"; };
+		C1ECF9851F32F44E00F40F05 /* TestExcelReusableFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestExcelReusableFootView.h; sourceTree = "<group>"; };
+		C1ECF9861F32F44E00F40F05 /* TestExcelReusableFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestExcelReusableFootView.m; sourceTree = "<group>"; };
+		C1ECF9871F32F44E00F40F05 /* TestExcelReusableHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestExcelReusableHeadView.h; sourceTree = "<group>"; };
+		C1ECF9881F32F44E00F40F05 /* TestExcelReusableHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestExcelReusableHeadView.m; sourceTree = "<group>"; };
+		C1ECF9891F32F44E00F40F05 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		C1ECF98A1F32F44E00F40F05 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C148E1F01F2AC4AA002C81A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C148E1EA1F2AC4AA002C81A0 = {
+			isa = PBXGroup;
+			children = (
+				C1ECF7DF1F32F44E00F40F05 /* HJExcelTableView */,
+				C1ECF97B1F32F44E00F40F05 /* HJExcelTableViewDemo */,
+				C148E1F41F2AC4AA002C81A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C148E1F41F2AC4AA002C81A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C148E1F31F2AC4AA002C81A0 /* HJExcelTableView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1ECF7DF1F32F44E00F40F05 /* HJExcelTableView */ = {
+			isa = PBXGroup;
+			children = (
+				C1ECF7E01F32F44E00F40F05 /* HJExcelHeadView */,
+				C1ECF7E31F32F44E00F40F05 /* HJExcelReusableView */,
+				C1ECF9651F32F44E00F40F05 /* HJExcelTableViewCell */,
+				C1ECF9781F32F44E00F40F05 /* HJExcelTableViewLayout */,
+				C1ECF9631F32F44E00F40F05 /* HJExcelTableView.h */,
+				C1ECF9641F32F44E00F40F05 /* HJExcelTableView.m */,
+			);
+			path = HJExcelTableView;
+			sourceTree = "<group>";
+		};
+		C1ECF7E01F32F44E00F40F05 /* HJExcelHeadView */ = {
+			isa = PBXGroup;
+			children = (
+				C1ECF7E11F32F44E00F40F05 /* HJExcelHeadView.h */,
+				C1ECF7E21F32F44E00F40F05 /* HJExcelHeadView.m */,
+			);
+			path = HJExcelHeadView;
+			sourceTree = "<group>";
+		};
+		C1ECF7E31F32F44E00F40F05 /* HJExcelReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				C1ECF7E41F32F44E00F40F05 /* HJExcelReusableView.h */,
+				C1ECF7E51F32F44E00F40F05 /* HJExcelReusableView.m */,
+			);
+			path = HJExcelReusableView;
+			sourceTree = "<group>";
+		};
+		C1ECF9651F32F44E00F40F05 /* HJExcelTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C1ECF9661F32F44E00F40F05 /* HJExcelTableViewCell.h */,
+				C1ECF9671F32F44E00F40F05 /* HJExcelTableViewCell.m */,
+			);
+			path = HJExcelTableViewCell;
+			sourceTree = "<group>";
+		};
+		C1ECF9781F32F44E00F40F05 /* HJExcelTableViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				C1ECF9791F32F44E00F40F05 /* HJExcelTableViewLayout.h */,
+				C1ECF97A1F32F44E00F40F05 /* HJExcelTableViewLayout.m */,
+			);
+			path = HJExcelTableViewLayout;
+			sourceTree = "<group>";
+		};
+		C1ECF97B1F32F44E00F40F05 /* HJExcelTableViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				C1ECF97C1F32F44E00F40F05 /* AppDelegate.h */,
+				C1ECF97D1F32F44E00F40F05 /* AppDelegate.m */,
+				C1ECF9891F32F44E00F40F05 /* TestViewController.h */,
+				C1ECF98A1F32F44E00F40F05 /* TestViewController.m */,
+				C1ECF9831F32F44E00F40F05 /* TestExcelHeadView.h */,
+				C1ECF9841F32F44E00F40F05 /* TestExcelHeadView.m */,
+				C1ECF9851F32F44E00F40F05 /* TestExcelReusableFootView.h */,
+				C1ECF9861F32F44E00F40F05 /* TestExcelReusableFootView.m */,
+				C1ECF9871F32F44E00F40F05 /* TestExcelReusableHeadView.h */,
+				C1ECF9881F32F44E00F40F05 /* TestExcelReusableHeadView.m */,
+				C1ECF97E1F32F44E00F40F05 /* Assets.xcassets */,
+				C1ECF97F1F32F44E00F40F05 /* LaunchScreen.storyboard */,
+				C1ECF9811F32F44E00F40F05 /* Info.plist */,
+				C1ECF9821F32F44E00F40F05 /* main.m */,
+			);
+			path = HJExcelTableViewDemo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C148E1F21F2AC4AA002C81A0 /* HJExcelTableView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C148E2041F2AC4AA002C81A0 /* Build configuration list for PBXNativeTarget "HJExcelTableView" */;
+			buildPhases = (
+				C148E1EF1F2AC4AA002C81A0 /* Sources */,
+				C148E1F01F2AC4AA002C81A0 /* Frameworks */,
+				C148E1F11F2AC4AA002C81A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HJExcelTableView;
+			productName = HJExcelTableView;
+			productReference = C148E1F31F2AC4AA002C81A0 /* HJExcelTableView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C148E1EB1F2AC4AA002C81A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = JefferyHe;
+				TargetAttributes = {
+					C148E1F21F2AC4AA002C81A0 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = FN82QTBZ23;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C148E1EE1F2AC4AA002C81A0 /* Build configuration list for PBXProject "HJExcelTableView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C148E1EA1F2AC4AA002C81A0;
+			productRefGroup = C148E1F41F2AC4AA002C81A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C148E1F21F2AC4AA002C81A0 /* HJExcelTableView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C148E1F11F2AC4AA002C81A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1ECFA081F32F44E00F40F05 /* LaunchScreen.storyboard in Resources */,
+				C1ECFA071F32F44E00F40F05 /* Assets.xcassets in Resources */,
+				C1ECFA091F32F44E00F40F05 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C148E1EF1F2AC4AA002C81A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1ECF98B1F32F44E00F40F05 /* HJExcelHeadView.m in Sources */,
+				C1ECFA0D1F32F44E00F40F05 /* TestExcelReusableHeadView.m in Sources */,
+				C1ECF9FB1F32F44E00F40F05 /* HJExcelTableViewCell.m in Sources */,
+				C1ECFA0A1F32F44E00F40F05 /* main.m in Sources */,
+				C1ECFA061F32F44E00F40F05 /* AppDelegate.m in Sources */,
+				C1ECFA0B1F32F44E00F40F05 /* TestExcelHeadView.m in Sources */,
+				C1ECFA0C1F32F44E00F40F05 /* TestExcelReusableFootView.m in Sources */,
+				C1ECFA051F32F44E00F40F05 /* HJExcelTableViewLayout.m in Sources */,
+				C1ECF9FA1F32F44E00F40F05 /* HJExcelTableView.m in Sources */,
+				C1ECFA0E1F32F44E00F40F05 /* TestViewController.m in Sources */,
+				C1ECF98C1F32F44E00F40F05 /* HJExcelReusableView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C1ECF97F1F32F44E00F40F05 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C1ECF9801F32F44E00F40F05 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C148E2021F2AC4AA002C81A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C148E2031F2AC4AA002C81A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C148E2051F2AC4AA002C81A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FN82QTBZ23;
+				INFOPLIST_FILE = "$(SRCROOT)/HJExcelTableViewDemo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeffery.HJExcelTableView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C148E2061F2AC4AA002C81A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FN82QTBZ23;
+				INFOPLIST_FILE = "$(SRCROOT)/HJExcelTableViewDemo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeffery.HJExcelTableView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C148E1EE1F2AC4AA002C81A0 /* Build configuration list for PBXProject "HJExcelTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C148E2021F2AC4AA002C81A0 /* Debug */,
+				C148E2031F2AC4AA002C81A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C148E2041F2AC4AA002C81A0 /* Build configuration list for PBXNativeTarget "HJExcelTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C148E2051F2AC4AA002C81A0 /* Debug */,
+				C148E2061F2AC4AA002C81A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C148E1EB1F2AC4AA002C81A0 /* Project object */;
+}
