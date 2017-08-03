@@ -436,7 +436,7 @@ static const CGFloat kGreaterRadio = 0.75f;
                 
             } else {// 非第一行的处理方式
                 frame.origin.y = self.collectionView.contentOffset.y + self.collectionView.contentInset.top + currentRow * attributesH
-                                 + self.rowSpacing * (currentRow + 1);
+                                 + self.rowSpacing * currentRow;
             }
             cellAttributes.frame = frame;
             cellAttributes.zIndex = 1;
