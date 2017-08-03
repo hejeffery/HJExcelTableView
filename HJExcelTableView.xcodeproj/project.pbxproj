@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C1ECF98B1F32F44E00F40F05 /* HJExcelHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF7E21F32F44E00F40F05 /* HJExcelHeadView.m */; };
-		C1ECF98C1F32F44E00F40F05 /* HJExcelReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF7E51F32F44E00F40F05 /* HJExcelReusableView.m */; };
+		C1E4A1071F331B9400BB12C8 /* HJExcelHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4A1001F331B9400BB12C8 /* HJExcelHeadView.m */; };
+		C1E4A1081F331B9400BB12C8 /* HJExcelReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4A1021F331B9400BB12C8 /* HJExcelReusableView.m */; };
+		C1E4A1091F331B9400BB12C8 /* HJExcelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4A1041F331B9400BB12C8 /* HJExcelTableViewCell.m */; };
+		C1E4A10A1F331B9400BB12C8 /* HJExcelTableViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4A1061F331B9400BB12C8 /* HJExcelTableViewLayout.m */; };
 		C1ECF9FA1F32F44E00F40F05 /* HJExcelTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF9641F32F44E00F40F05 /* HJExcelTableView.m */; };
-		C1ECF9FB1F32F44E00F40F05 /* HJExcelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF9671F32F44E00F40F05 /* HJExcelTableViewCell.m */; };
-		C1ECFA051F32F44E00F40F05 /* HJExcelTableViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF97A1F32F44E00F40F05 /* HJExcelTableViewLayout.m */; };
 		C1ECFA061F32F44E00F40F05 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECF97D1F32F44E00F40F05 /* AppDelegate.m */; };
 		C1ECFA071F32F44E00F40F05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1ECF97E1F32F44E00F40F05 /* Assets.xcassets */; };
 		C1ECFA081F32F44E00F40F05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1ECF97F1F32F44E00F40F05 /* LaunchScreen.storyboard */; };
@@ -25,16 +25,16 @@
 
 /* Begin PBXFileReference section */
 		C148E1F31F2AC4AA002C81A0 /* HJExcelTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HJExcelTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1ECF7E11F32F44E00F40F05 /* HJExcelHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelHeadView.h; sourceTree = "<group>"; };
-		C1ECF7E21F32F44E00F40F05 /* HJExcelHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelHeadView.m; sourceTree = "<group>"; };
-		C1ECF7E41F32F44E00F40F05 /* HJExcelReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelReusableView.h; sourceTree = "<group>"; };
-		C1ECF7E51F32F44E00F40F05 /* HJExcelReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelReusableView.m; sourceTree = "<group>"; };
+		C1E4A0FF1F331B9400BB12C8 /* HJExcelHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelHeadView.h; sourceTree = "<group>"; };
+		C1E4A1001F331B9400BB12C8 /* HJExcelHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelHeadView.m; sourceTree = "<group>"; };
+		C1E4A1011F331B9400BB12C8 /* HJExcelReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelReusableView.h; sourceTree = "<group>"; };
+		C1E4A1021F331B9400BB12C8 /* HJExcelReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelReusableView.m; sourceTree = "<group>"; };
+		C1E4A1031F331B9400BB12C8 /* HJExcelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelTableViewCell.h; sourceTree = "<group>"; };
+		C1E4A1041F331B9400BB12C8 /* HJExcelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelTableViewCell.m; sourceTree = "<group>"; };
+		C1E4A1051F331B9400BB12C8 /* HJExcelTableViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelTableViewLayout.h; sourceTree = "<group>"; };
+		C1E4A1061F331B9400BB12C8 /* HJExcelTableViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelTableViewLayout.m; sourceTree = "<group>"; };
 		C1ECF9631F32F44E00F40F05 /* HJExcelTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelTableView.h; sourceTree = "<group>"; };
 		C1ECF9641F32F44E00F40F05 /* HJExcelTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelTableView.m; sourceTree = "<group>"; };
-		C1ECF9661F32F44E00F40F05 /* HJExcelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelTableViewCell.h; sourceTree = "<group>"; };
-		C1ECF9671F32F44E00F40F05 /* HJExcelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelTableViewCell.m; sourceTree = "<group>"; };
-		C1ECF9791F32F44E00F40F05 /* HJExcelTableViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelTableViewLayout.h; sourceTree = "<group>"; };
-		C1ECF97A1F32F44E00F40F05 /* HJExcelTableViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelTableViewLayout.m; sourceTree = "<group>"; };
 		C1ECF97C1F32F44E00F40F05 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1ECF97D1F32F44E00F40F05 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C1ECF97E1F32F44E00F40F05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,50 +82,18 @@
 		C1ECF7DF1F32F44E00F40F05 /* HJExcelTableView */ = {
 			isa = PBXGroup;
 			children = (
-				C1ECF7E01F32F44E00F40F05 /* HJExcelHeadView */,
-				C1ECF7E31F32F44E00F40F05 /* HJExcelReusableView */,
-				C1ECF9651F32F44E00F40F05 /* HJExcelTableViewCell */,
-				C1ECF9781F32F44E00F40F05 /* HJExcelTableViewLayout */,
 				C1ECF9631F32F44E00F40F05 /* HJExcelTableView.h */,
 				C1ECF9641F32F44E00F40F05 /* HJExcelTableView.m */,
+				C1E4A0FF1F331B9400BB12C8 /* HJExcelHeadView.h */,
+				C1E4A1001F331B9400BB12C8 /* HJExcelHeadView.m */,
+				C1E4A1011F331B9400BB12C8 /* HJExcelReusableView.h */,
+				C1E4A1021F331B9400BB12C8 /* HJExcelReusableView.m */,
+				C1E4A1031F331B9400BB12C8 /* HJExcelTableViewCell.h */,
+				C1E4A1041F331B9400BB12C8 /* HJExcelTableViewCell.m */,
+				C1E4A1051F331B9400BB12C8 /* HJExcelTableViewLayout.h */,
+				C1E4A1061F331B9400BB12C8 /* HJExcelTableViewLayout.m */,
 			);
 			path = HJExcelTableView;
-			sourceTree = "<group>";
-		};
-		C1ECF7E01F32F44E00F40F05 /* HJExcelHeadView */ = {
-			isa = PBXGroup;
-			children = (
-				C1ECF7E11F32F44E00F40F05 /* HJExcelHeadView.h */,
-				C1ECF7E21F32F44E00F40F05 /* HJExcelHeadView.m */,
-			);
-			path = HJExcelHeadView;
-			sourceTree = "<group>";
-		};
-		C1ECF7E31F32F44E00F40F05 /* HJExcelReusableView */ = {
-			isa = PBXGroup;
-			children = (
-				C1ECF7E41F32F44E00F40F05 /* HJExcelReusableView.h */,
-				C1ECF7E51F32F44E00F40F05 /* HJExcelReusableView.m */,
-			);
-			path = HJExcelReusableView;
-			sourceTree = "<group>";
-		};
-		C1ECF9651F32F44E00F40F05 /* HJExcelTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				C1ECF9661F32F44E00F40F05 /* HJExcelTableViewCell.h */,
-				C1ECF9671F32F44E00F40F05 /* HJExcelTableViewCell.m */,
-			);
-			path = HJExcelTableViewCell;
-			sourceTree = "<group>";
-		};
-		C1ECF9781F32F44E00F40F05 /* HJExcelTableViewLayout */ = {
-			isa = PBXGroup;
-			children = (
-				C1ECF9791F32F44E00F40F05 /* HJExcelTableViewLayout.h */,
-				C1ECF97A1F32F44E00F40F05 /* HJExcelTableViewLayout.m */,
-			);
-			path = HJExcelTableViewLayout;
 			sourceTree = "<group>";
 		};
 		C1ECF97B1F32F44E00F40F05 /* HJExcelTableViewDemo */ = {
@@ -221,17 +189,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1ECF98B1F32F44E00F40F05 /* HJExcelHeadView.m in Sources */,
 				C1ECFA0D1F32F44E00F40F05 /* TestExcelReusableHeadView.m in Sources */,
-				C1ECF9FB1F32F44E00F40F05 /* HJExcelTableViewCell.m in Sources */,
 				C1ECFA0A1F32F44E00F40F05 /* main.m in Sources */,
 				C1ECFA061F32F44E00F40F05 /* AppDelegate.m in Sources */,
 				C1ECFA0B1F32F44E00F40F05 /* TestExcelHeadView.m in Sources */,
+				C1E4A1071F331B9400BB12C8 /* HJExcelHeadView.m in Sources */,
+				C1E4A10A1F331B9400BB12C8 /* HJExcelTableViewLayout.m in Sources */,
 				C1ECFA0C1F32F44E00F40F05 /* TestExcelReusableFootView.m in Sources */,
-				C1ECFA051F32F44E00F40F05 /* HJExcelTableViewLayout.m in Sources */,
 				C1ECF9FA1F32F44E00F40F05 /* HJExcelTableView.m in Sources */,
+				C1E4A1081F331B9400BB12C8 /* HJExcelReusableView.m in Sources */,
 				C1ECFA0E1F32F44E00F40F05 /* TestViewController.m in Sources */,
-				C1ECF98C1F32F44E00F40F05 /* HJExcelReusableView.m in Sources */,
+				C1E4A1091F331B9400BB12C8 /* HJExcelTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
