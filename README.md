@@ -10,6 +10,8 @@
 iOS 7 or later
 
 ## 编译要求
+Xcode6+
+OS X 10.7
 
 ## 安装
 
