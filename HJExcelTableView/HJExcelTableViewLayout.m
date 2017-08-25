@@ -106,9 +106,15 @@ static const CGFloat kGreaterRadio = 0.75f;
 
 /*!
  @property
- @abstract 所有的cell的信息
+ @abstract 所有的cell
  */
 @property (nonatomic, strong) NSMutableArray *attributes;
+
+/*!
+ @property
+ @abstract 可见的cell
+ */
+@property (nonatomic, strong) NSMutableArray *visibleAttributes;
 
 /*!
  @property
@@ -152,6 +158,30 @@ static const CGFloat kGreaterRadio = 0.75f;
  */
 @property (nonatomic, weak) HJExcelHeadView *excelHeadView;
 
+/*!
+ @property
+ @abstract 返回计算出来的contentSize
+ */
+@property (nonatomic, assign) CGSize realContentSize;
+
+/*!
+ @property
+ @abstract 可见区域的Rect
+ */
+@property (nonatomic, assign) CGRect visibleRect;
+
+/*!
+ @property
+ @abstract 可见区域的宽
+ */
+@property (nonatomic, assign) CGFloat visibleWidth;
+
+/*!
+ @property
+ @abstract 可见区域的高
+ */
+@property (nonatomic, assign) CGFloat visibleHeight;
+
 @end
 
 @implementation HJExcelTableViewLayout
@@ -187,6 +217,13 @@ static const CGFloat kGreaterRadio = 0.75f;
     return _attributes;
 }
 
+- (NSMutableArray *)visibleAttributes {
+    if (!_visibleAttributes) {
+        _visibleAttributes = [NSMutableArray array];
+    }
+    return _visibleAttributes;
+}
+
 - (NSMutableArray *)sectionModels {
     if (!_sectionModels) {
         _sectionModels = [NSMutableArray array];
@@ -198,12 +235,12 @@ static const CGFloat kGreaterRadio = 0.75f;
 - (void)prepareLayout {
     [super prepareLayout];
     
-    [self.attributes removeAllObjects];
-    [self.sectionModels removeAllObjects];
-    
     NSInteger section = self.collectionView.numberOfSections;
-    // section有值才处理
-    if (section) {
+    // section有值并且self.attributes中没有值才处理
+    if (section && !self.attributes.count) {
+        self.visibleWidth = CGRectGetWidth(self.collectionView.bounds);
+        self.visibleHeight = CGRectGetHeight(self.collectionView.bounds);
+        
         self.columnSpacing = [self.delegate columnSpacingOfExcelTableViewLayout:self];
         self.rowSpacing = [self.delegate rowSpacingOfExcelTableViewLayout:self];
         self.sectionSpacing = [self.delegate sectionSpacingOfExcelTableViewLayout:self];
@@ -256,8 +293,15 @@ static const CGFloat kGreaterRadio = 0.75f;
                 UICollectionViewLayoutAttributes *layoutes = [self layoutAttributesForItemAtIndexPath:indexPath];
                 [self.attributes addObject:layoutes];
             }
+            
+            self.realContentSize = [self calculateContentSize];
         }
     }
+    
+    self.visibleRect = CGRectMake(self.collectionView.contentOffset.x,
+                                  self.collectionView.contentOffset.y,
+                                  self.visibleWidth,
+                                  self.visibleHeight);
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
@@ -265,101 +309,43 @@ static const CGFloat kGreaterRadio = 0.75f;
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    return [self.attributes copy];
+    [self.visibleAttributes removeAllObjects];
+    [self.attributes enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes *itemAttributes, NSUInteger idx, BOOL *stop) {
+        if (CGRectIntersectsRect(itemAttributes.frame, self.visibleRect)) {
+            
+            if (itemAttributes.representedElementCategory == UICollectionElementCategoryCell) {
+                [self calculateStickyItemAttributes:itemAttributes];
+                
+            } else if (itemAttributes.representedElementCategory == UICollectionElementCategorySupplementaryView) {
+                
+                [self calculateHeaderFooterAttributes:itemAttributes supplementaryViewOfKind:itemAttributes.representedElementKind];
+            }
+            
+            [self.visibleAttributes addObject:itemAttributes];
+        }
+    }];
+    
+    if (self.hasTableHeaderView && self.enableStickTableHeaderView) {
+        CGRect headerViewFrame = self.excelHeadView.frame;
+        headerViewFrame.origin.x = self.collectionView.contentOffset.x;
+        self.excelHeadView.frame = headerViewFrame;
+    }
+    
+    return self.visibleAttributes;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind
                                                                      atIndexPath:(NSIndexPath *)indexPath {
     // 不调用layoutAttributesForSupplementaryViewOfKind方法，就不会掉用HJExcelTableView.m中的viewForSupplementaryElementOfKind代理方法
+    // 创建SupplementaryElement
     UICollectionViewLayoutAttributes *supplementaryAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind
                                                                                                                                withIndexPath:indexPath];
-    // 是否固定了列数
-    BOOL isStickColumn = [self.delegate numberOfStickColumnExcelTableViewLayout:self];
-    
-    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
-        CGFloat headerViewW = [self collectionViewContentSize].width;
-        CGFloat headerViewH = self.sectionHeaderViewHeight;
-        CGFloat headerViewX = 0.0f;
-        
-        // 如果固定列数，并且contentOffset.x < 0，headerview固定不动
-        if (isStickColumn && self.collectionView.contentOffset.x < 0) {
-            headerViewX = self.collectionView.contentOffset.x;
-        }
-        
-        // 计算y的值
-        // section为0，headerViewY为0
-        // section不为0，headerViewY = 为前面所有section的高度之和
-        if (indexPath.section == 0) {
-            CGFloat headerViewY = 0.0f;
-            // 有tableHeaderView的情况，再 + self.tableHeaderViewHeight
-            if (self.hasTableHeaderView) {
-                headerViewY += self.tableHeaderViewHeight;
-            }
-            supplementaryAttributes.frame = CGRectMake(headerViewX, headerViewY, headerViewW, headerViewH);
-            
-        } else {
-            CGFloat headerViewY = 0.0f;
-            for (NSInteger i = 0; i < indexPath.section; i++) {
-                HJExcelTableViewSectionModel *sectionModel = self.sectionModels[i];
-                // 要加上行距，也就是self.rowSpacing
-                headerViewY += self.sectionHeaderViewHeight + sectionModel.rowHeight * sectionModel.rowNumber +
-                               self.rowSpacing * (sectionModel.rowNumber - 1) +
-                               self.sectionFooterViewHeight;
-            }
-            // 有tableHeaderView的情况，再 + self.tableHeaderViewHeight
-            if (self.hasTableHeaderView) {
-                headerViewY += self.tableHeaderViewHeight;
-            }
-            supplementaryAttributes.frame = CGRectMake(headerViewX, headerViewY, headerViewW, headerViewH);
-        }
-        
-    } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
-        CGFloat footerViewW = [self collectionViewContentSize].width;
-        CGFloat footerViewH = self.sectionFooterViewHeight;
-        CGFloat footerViewX = 0.0f;
-        
-        // 如果固定列数，并且contentOffset.x < 0，footerview固定不动
-        if (isStickColumn && self.collectionView.contentOffset.x < 0) {
-            footerViewX = self.collectionView.contentOffset.x;
-        }
-        
-        // 计算y的值
-        // section为0
-        if (indexPath.section == 0) {
-            HJExcelTableViewSectionModel *sectionModel = self.sectionModels[0];
-            CGFloat footerViewY = self.sectionHeaderViewHeight + sectionModel.rowHeight * sectionModel.rowNumber +
-                                  self.rowSpacing * (sectionModel.rowNumber - 1);
-            // 有tableHeaderView的情况，再 + self.tableHeaderViewHeight
-            if (self.hasTableHeaderView) {
-                footerViewY += self.tableHeaderViewHeight;
-            }
-            supplementaryAttributes.frame = CGRectMake(footerViewX, footerViewY, footerViewW, footerViewH);
-            
-        } else {
-            // section不为0
-            CGFloat footerViewY = 0.0f;
-            // 先计算出前几个section的总高度，要加上行距，也就是self.rowSpacing
-            for (NSInteger i = 0; i < indexPath.section; i++) {
-                HJExcelTableViewSectionModel *sectionModel = self.sectionModels[i];
-                footerViewY += self.sectionHeaderViewHeight + self.sectionFooterViewHeight +
-                               sectionModel.rowHeight * sectionModel.rowNumber +
-                               self.rowSpacing * (sectionModel.rowNumber - 1);
-            }
-            // 再 + self.sectionHeaderViewHeight + 当前section中的cell的总高度，要加上行距，也就是self.rowSpacing
-            HJExcelTableViewSectionModel *currentSectionModel = self.sectionModels[indexPath.section];
-            footerViewY += self.sectionHeaderViewHeight + currentSectionModel.rowHeight * currentSectionModel.rowNumber +
-                           self.rowSpacing * (currentSectionModel.rowNumber - 1);
-            // 有tableHeaderView的情况，再 + self.tableHeaderViewHeight
-            if (self.hasTableHeaderView) {
-                footerViewY += self.tableHeaderViewHeight;
-            }
-            supplementaryAttributes.frame = CGRectMake(footerViewX, footerViewY, footerViewW, footerViewH);
-        }
-    }
+    [self calculateHeaderFooterAttributes:supplementaryAttributes supplementaryViewOfKind:elementKind];
     return supplementaryAttributes;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // 创建Item
     UICollectionViewLayoutAttributes *cellAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     HJExcelTableViewSectionModel *sectionModel = self.sectionModels[indexPath.section];
 
@@ -423,59 +409,8 @@ static const CGFloat kGreaterRadio = 0.75f;
     }
     CGFloat attributesX = sectionModel.previousAttributesX;
     cellAttributes.frame = CGRectMake(attributesX, attributesY, attributesW, attributesH);
-    
-    // 有固定的行数，并且总行数的高度要小于屏幕高度的四分之三才，且section为1时才处理
-    if (self.stickRowNumber &&
-        ![self greaterHeightWithStickRow:self.stickRowNumber rowHeight:attributesH] &&
-        self.collectionView.numberOfSections == 1) {
-        if (currentRow < self.stickRowNumber) {
-            CGRect frame = cellAttributes.frame;
-            // 第一行的处理方式
-            if (currentRow == 0) {
-                frame.origin.y = self.collectionView.contentOffset.y + self.collectionView.contentInset.top;
-                
-            } else {// 非第一行的处理方式
-                frame.origin.y = self.collectionView.contentOffset.y + self.collectionView.contentInset.top + currentRow * attributesH
-                                 + self.rowSpacing * currentRow;
-            }
-            cellAttributes.frame = frame;
-            cellAttributes.zIndex = 1;
-        }
-    }
-    
-    // 有固定的列数，并且总列数的宽度要小于屏幕宽度的四分之三才处理
-    if (self.stickColumnNumber &&
-        ![self greaterWidthWithStickColumn:self.stickColumnNumber columnWidths:sectionModel.columnWidths]) {
-        
-        if (currentColumn < self.stickColumnNumber) {
-            CGRect frame = cellAttributes.frame;
-            // 第一列的处理方式
-            if (currentColumn == 0) {
-                frame.origin.x = self.collectionView.contentOffset.x;
-
-            } else {// 非第一列的处理方式
-                frame.origin.x = self.collectionView.contentOffset.x
-                                 + fabs(sectionModel.columnWidths[currentColumn - 1].floatValue)
-                                 + self.columnSpacing;
-            }
-            cellAttributes.frame = frame;
-            cellAttributes.zIndex = 1;
-        }
-    }
-    
-    // 有固定行数和固定列数，且section为1时才处理
-    if (self.collectionView.numberOfSections == 1 && self.stickRowNumber && self.stickColumnNumber) {
-        if (currentRow < self.stickRowNumber && currentColumn < self.stickColumnNumber) {
-            cellAttributes.zIndex = 2;
-        }
-    }
 
     sectionModel.lastAttributesLayout = cellAttributes;
-    if (self.hasTableHeaderView && self.enableStickTableHeaderView) {
-        CGRect headerViewFrame = self.excelHeadView.frame;
-        headerViewFrame.origin.x = self.collectionView.contentOffset.x;
-        self.excelHeadView.frame = headerViewFrame;
-    }
 
     return cellAttributes;
 }
@@ -485,31 +420,7 @@ static const CGFloat kGreaterRadio = 0.75f;
         return CGSizeZero;
     }
     
-    // 计算宽度
-    HJExcelTableViewSectionModel *selectedModel = self.sectionModels[0];
-    NSInteger count = self.sectionModels.count;
-    for (NSInteger i = 1; i < count; i++) {
-        HJExcelTableViewSectionModel *sectionModel = self.sectionModels[i];
-        if (selectedModel.totalWidth <  sectionModel.totalWidth) {
-            selectedModel = sectionModel;
-        }
-    }
-    CGFloat contentW = selectedModel.totalWidth + (selectedModel.columnNumber - 1) * self.columnSpacing;
-    
-    // 计算高度
-    HJExcelTableViewSectionModel *lastModel = self.sectionModels.lastObject;
-    CGFloat contentH = CGRectGetMaxY(lastModel.lastAttributesLayout.frame);
-    
-    // 只加最后一个footer的高度
-    if (self.sectionFooterViewHeight) {
-        contentH += self.sectionFooterViewHeight;
-    }
-    
-    // +0.5是让宽度稍微大于屏幕的宽度，这样会有反馈的效果
-    contentW = MAX(contentW, ScreenWidth + 0.5f);
-    contentH = MAX(contentH, ScreenHeight);
-    
-    return CGSizeMake(contentW, contentH);
+    return self.realContentSize;
 }
 
 #pragma mark - Getter/Setter
@@ -537,6 +448,182 @@ static const CGFloat kGreaterRadio = 0.75f;
 - (BOOL)greaterHeightWithStickRow:(NSInteger)stickRow rowHeight:(CGFloat)rowHeight {
     CGFloat calculateHeight = stickRow * rowHeight;
     return (calculateHeight > ScreenHeight * kGreaterRadio) ? YES : NO;
+}
+
+- (CGSize)calculateContentSize {
+    // 计算宽度
+    HJExcelTableViewSectionModel *selectedModel = self.sectionModels[0];
+    NSInteger count = self.sectionModels.count;
+    for (NSInteger i = 1; i < count; i++) {
+        HJExcelTableViewSectionModel *sectionModel = self.sectionModels[i];
+        if (selectedModel.totalWidth <  sectionModel.totalWidth) {
+            selectedModel = sectionModel;
+        }
+    }
+    CGFloat contentW = selectedModel.totalWidth + (selectedModel.columnNumber - 1) * self.columnSpacing;
+    
+    // 计算高度
+    HJExcelTableViewSectionModel *lastModel = self.sectionModels.lastObject;
+    CGFloat contentH = CGRectGetMaxY(lastModel.lastAttributesLayout.frame);
+    
+    // 只加最后一个footer的高度
+    if (self.sectionFooterViewHeight) {
+        contentH += self.sectionFooterViewHeight;
+    }
+    
+    // +0.5是让宽度稍微大于屏幕的宽度，这样会有反馈的效果
+    contentW = MAX(contentW, ScreenWidth + 0.5f);
+    contentH = MAX(contentH, ScreenHeight);
+    
+    return CGSizeMake(contentW, contentH);
+}
+
+- (void)calculateStickyItemAttributes:(UICollectionViewLayoutAttributes *)itmeAttributes
+{
+    NSIndexPath *indexPath = itmeAttributes.indexPath;
+    HJExcelTableViewSectionModel *sectionModel = self.sectionModels[indexPath.section];
+    // 算出当前的列号
+    NSInteger currentColumn = indexPath.item % sectionModel.columnNumber;
+    // 算出当前的行号
+    NSInteger currentRow = indexPath.item / sectionModel.columnNumber;
+    // 获取当前行的高度
+    CGFloat attributesH = sectionModel.rowHeight;
+    
+    // 有固定的行数，并且总行数的高度要小于屏幕高度的四分之三才，且section为1时才处理
+    if (self.stickRowNumber &&
+        ![self greaterHeightWithStickRow:self.stickRowNumber rowHeight:attributesH] &&
+        self.collectionView.numberOfSections == 1) {
+        if (currentRow < self.stickRowNumber) {
+            CGRect frame = itmeAttributes.frame;
+            // 第一行的处理方式
+            if (currentRow == 0) {
+                frame.origin.y = self.collectionView.contentOffset.y + self.collectionView.contentInset.top;
+                
+            } else {// 非第一行的处理方式
+                frame.origin.y = self.collectionView.contentOffset.y + self.collectionView.contentInset.top + currentRow * attributesH
+                               + self.rowSpacing * currentRow;
+            }
+            itmeAttributes.frame = frame;
+            itmeAttributes.zIndex = 1;
+        }
+    }
+    
+    // 有固定的列数，并且总列数的宽度要小于屏幕宽度的四分之三才处理
+    if (self.stickColumnNumber &&
+        ![self greaterWidthWithStickColumn:self.stickColumnNumber columnWidths:sectionModel.columnWidths]) {
+        
+        if (currentColumn < self.stickColumnNumber) {
+            CGRect frame = itmeAttributes.frame;
+            // 第一列的处理方式
+            if (currentColumn == 0) {
+                frame.origin.x = self.collectionView.contentOffset.x;
+                
+            } else {// 非第一列的处理方式
+                frame.origin.x = self.collectionView.contentOffset.x
+                               + fabs(sectionModel.columnWidths[currentColumn - 1].floatValue)
+                               + self.columnSpacing;
+            }
+            itmeAttributes.frame = frame;
+            itmeAttributes.zIndex = 1;
+        }
+    }
+    
+    // 有固定行数和固定列数，且section为1时才处理
+    if (self.collectionView.numberOfSections == 1 && self.stickRowNumber && self.stickColumnNumber) {
+        if (currentRow < self.stickRowNumber && currentColumn < self.stickColumnNumber) {
+            itmeAttributes.zIndex = 2;
+        }
+    }
+}
+
+- (void)calculateHeaderFooterAttributes:(UICollectionViewLayoutAttributes *)headerFooterAttributes
+                supplementaryViewOfKind:(NSString *)elementKind
+{
+    // 是否固定了列数
+    BOOL isStickColumn = [self.delegate numberOfStickColumnExcelTableViewLayout:self];
+    
+    NSIndexPath *indexPath = headerFooterAttributes.indexPath;
+    
+    CGFloat headerFooterW = [self collectionViewContentSize].width;
+    
+    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+        CGFloat headerViewH = self.sectionHeaderViewHeight;
+        CGFloat headerViewX = 0.0f;
+        
+        // 如果固定列数，并且contentOffset.x < 0，headerview固定不动
+        if (isStickColumn && self.collectionView.contentOffset.x < 0) {
+            headerViewX = self.collectionView.contentOffset.x;
+        }
+        
+        // 计算y的值
+        // section为0，headerViewY为0
+        // section不为0，headerViewY = 为前面所有section的高度之和
+        if (indexPath.section == 0) {
+            CGFloat headerViewY = 0.0f;
+            // 有tableHeaderView的情况，再 + self.tableHeaderViewHeight
+            if (self.hasTableHeaderView) {
+                headerViewY += self.tableHeaderViewHeight;
+            }
+            headerFooterAttributes.frame = CGRectMake(headerViewX, headerViewY, headerFooterW, headerViewH);
+            
+        } else {
+            CGFloat headerViewY = 0.0f;
+            for (NSInteger i = 0; i < indexPath.section; i++) {
+                HJExcelTableViewSectionModel *sectionModel = self.sectionModels[i];
+                // 要加上行距，也就是self.rowSpacing
+                headerViewY += self.sectionHeaderViewHeight + sectionModel.rowHeight * sectionModel.rowNumber
+                             + self.rowSpacing * (sectionModel.rowNumber - 1)
+                             + self.sectionFooterViewHeight;
+            }
+            // 有tableHeaderView的情况，再 + self.tableHeaderViewHeight
+            if (self.hasTableHeaderView) {
+                headerViewY += self.tableHeaderViewHeight;
+            }
+            headerFooterAttributes.frame = CGRectMake(headerViewX, headerViewY, headerFooterW, headerViewH);
+        }
+        
+    } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
+        CGFloat footerViewH = self.sectionFooterViewHeight;
+        CGFloat footerViewX = 0.0f;
+        
+        // 如果固定列数，并且contentOffset.x < 0，footerview固定不动
+        if (isStickColumn && self.collectionView.contentOffset.x < 0) {
+            footerViewX = self.collectionView.contentOffset.x;
+        }
+        
+        // 计算y的值
+        // section为0
+        if (indexPath.section == 0) {
+            HJExcelTableViewSectionModel *sectionModel = self.sectionModels[0];
+            CGFloat footerViewY = self.sectionHeaderViewHeight + sectionModel.rowHeight * sectionModel.rowNumber
+            + self.rowSpacing * (sectionModel.rowNumber - 1);
+            // 有tableHeaderView的情况，再 + self.tableHeaderViewHeight
+            if (self.hasTableHeaderView) {
+                footerViewY += self.tableHeaderViewHeight;
+            }
+            headerFooterAttributes.frame = CGRectMake(footerViewX, footerViewY, headerFooterW, footerViewH);
+            
+        } else {
+            // section不为0
+            CGFloat footerViewY = 0.0f;
+            // 先计算出前几个section的总高度，要加上行距，也就是self.rowSpacing
+            for (NSInteger i = 0; i < indexPath.section; i++) {
+                HJExcelTableViewSectionModel *sectionModel = self.sectionModels[i];
+                footerViewY += self.sectionHeaderViewHeight + self.sectionFooterViewHeight
+                             + sectionModel.rowHeight * sectionModel.rowNumber
+                             + self.rowSpacing * (sectionModel.rowNumber - 1);
+            }
+            // 再 + self.sectionHeaderViewHeight + 当前section中的cell的总高度，要加上行距，也就是self.rowSpacing
+            HJExcelTableViewSectionModel *currentSectionModel = self.sectionModels[indexPath.section];
+            footerViewY += self.sectionHeaderViewHeight + currentSectionModel.rowHeight * currentSectionModel.rowNumber
+                         + self.rowSpacing * (currentSectionModel.rowNumber - 1);
+            // 有tableHeaderView的情况，再 + self.tableHeaderViewHeight
+            if (self.hasTableHeaderView) {
+                footerViewY += self.tableHeaderViewHeight;
+            }
+            headerFooterAttributes.frame = CGRectMake(footerViewX, footerViewY, headerFooterW, footerViewH);
+        }
+    }
 }
 
 @end
