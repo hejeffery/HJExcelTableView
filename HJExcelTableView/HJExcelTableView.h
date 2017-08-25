@@ -41,7 +41,7 @@
 
 /*!
  @property
- @abstract 每个section的间距，默认是1.0f。如果sectionHeaderView和sectionFooterView都没有设置，section间的距离用sectionSpacing
+ @abstract 每个section的间距，默认是0.0f。如果sectionHeaderView和sectionFooterView都没有设置，section间的距离用sectionSpacing
            设置的值最好是要 / [UIScreen mainScreen].scale
  */
 @property (nonatomic, assign) CGFloat sectionSpacing;

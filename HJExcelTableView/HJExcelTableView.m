@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, Direction) {
     self.column = 1;
     self.rowSpacing = 1.0f / [UIScreen mainScreen].scale;
     self.columnSpacing = 0.0f / [UIScreen mainScreen].scale;
-    self.sectionSpacing = 1.0f / [UIScreen mainScreen].scale;
+    self.sectionSpacing = 0.0f / [UIScreen mainScreen].scale;
     self.showsVerticalScrollIndicator = YES;
     self.showsHorizontalScrollIndicator = YES;
     self.bounces = YES;
