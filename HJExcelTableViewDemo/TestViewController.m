@@ -14,6 +14,7 @@
 #import "TestExcelReusableHeadView.h"
 #import "TestExcelReusableFootView.h"
 #import "TestExcelHeadView.h"
+#import "TestExcelFootView.h"
 
 static NSString *const cellID = @"CellID";
 static NSString *headerID = @"HeaderID";
@@ -82,6 +83,14 @@ static NSString *footerID = @"FooterID";
 //        excelTableView.tableHeaderView = headerView;
 //        // 设置headerView固定
 //        excelTableView.enableStickTableHeaderView = YES;
+        
+//        // 设置footerView
+//        TestExcelFootView *footerView = [[TestExcelFootView alloc] init];
+//        footerView.frame = CGRectMake(0.0f, 0.0f, [UIScreen mainScreen].bounds.size.width, 44.0f);
+//        footerView.backgroundColor = [UIColor orangeColor];
+//        excelTableView.tableFooterView = footerView;
+//        // 设置footerView固定
+//        excelTableView.enableStickTableFooterView = YES;
         
         [self.view addSubview:excelTableView];
         _excelTableView = excelTableView;

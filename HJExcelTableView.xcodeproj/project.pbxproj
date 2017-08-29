@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1992BCB1F554FBD00C644B2 /* HJExcelFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1992BCA1F554FBD00C644B2 /* HJExcelFootView.m */; };
+		C1992BD11F55523700C644B2 /* TestExcelFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1992BD01F55523700C644B2 /* TestExcelFootView.m */; };
 		C1E4A1071F331B9400BB12C8 /* HJExcelHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4A1001F331B9400BB12C8 /* HJExcelHeadView.m */; };
 		C1E4A1081F331B9400BB12C8 /* HJExcelReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4A1021F331B9400BB12C8 /* HJExcelReusableView.m */; };
 		C1E4A1091F331B9400BB12C8 /* HJExcelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4A1041F331B9400BB12C8 /* HJExcelTableViewCell.m */; };
@@ -25,6 +27,10 @@
 
 /* Begin PBXFileReference section */
 		C148E1F31F2AC4AA002C81A0 /* HJExcelTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HJExcelTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1992BC91F554FBD00C644B2 /* HJExcelFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelFootView.h; sourceTree = "<group>"; };
+		C1992BCA1F554FBD00C644B2 /* HJExcelFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelFootView.m; sourceTree = "<group>"; };
+		C1992BCF1F55523700C644B2 /* TestExcelFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestExcelFootView.h; sourceTree = "<group>"; };
+		C1992BD01F55523700C644B2 /* TestExcelFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestExcelFootView.m; sourceTree = "<group>"; };
 		C1E4A0FF1F331B9400BB12C8 /* HJExcelHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelHeadView.h; sourceTree = "<group>"; };
 		C1E4A1001F331B9400BB12C8 /* HJExcelHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJExcelHeadView.m; sourceTree = "<group>"; };
 		C1E4A1011F331B9400BB12C8 /* HJExcelReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJExcelReusableView.h; sourceTree = "<group>"; };
@@ -86,6 +92,8 @@
 				C1ECF9641F32F44E00F40F05 /* HJExcelTableView.m */,
 				C1E4A0FF1F331B9400BB12C8 /* HJExcelHeadView.h */,
 				C1E4A1001F331B9400BB12C8 /* HJExcelHeadView.m */,
+				C1992BC91F554FBD00C644B2 /* HJExcelFootView.h */,
+				C1992BCA1F554FBD00C644B2 /* HJExcelFootView.m */,
 				C1E4A1011F331B9400BB12C8 /* HJExcelReusableView.h */,
 				C1E4A1021F331B9400BB12C8 /* HJExcelReusableView.m */,
 				C1E4A1031F331B9400BB12C8 /* HJExcelTableViewCell.h */,
@@ -105,6 +113,8 @@
 				C1ECF98A1F32F44E00F40F05 /* TestViewController.m */,
 				C1ECF9831F32F44E00F40F05 /* TestExcelHeadView.h */,
 				C1ECF9841F32F44E00F40F05 /* TestExcelHeadView.m */,
+				C1992BCF1F55523700C644B2 /* TestExcelFootView.h */,
+				C1992BD01F55523700C644B2 /* TestExcelFootView.m */,
 				C1ECF9851F32F44E00F40F05 /* TestExcelReusableFootView.h */,
 				C1ECF9861F32F44E00F40F05 /* TestExcelReusableFootView.m */,
 				C1ECF9871F32F44E00F40F05 /* TestExcelReusableHeadView.h */,
@@ -191,6 +201,7 @@
 			files = (
 				C1ECFA0D1F32F44E00F40F05 /* TestExcelReusableHeadView.m in Sources */,
 				C1ECFA0A1F32F44E00F40F05 /* main.m in Sources */,
+				C1992BCB1F554FBD00C644B2 /* HJExcelFootView.m in Sources */,
 				C1ECFA061F32F44E00F40F05 /* AppDelegate.m in Sources */,
 				C1ECFA0B1F32F44E00F40F05 /* TestExcelHeadView.m in Sources */,
 				C1E4A1071F331B9400BB12C8 /* HJExcelHeadView.m in Sources */,
@@ -199,6 +210,7 @@
 				C1ECF9FA1F32F44E00F40F05 /* HJExcelTableView.m in Sources */,
 				C1E4A1081F331B9400BB12C8 /* HJExcelReusableView.m in Sources */,
 				C1ECFA0E1F32F44E00F40F05 /* TestViewController.m in Sources */,
+				C1992BD11F55523700C644B2 /* TestExcelFootView.m in Sources */,
 				C1E4A1091F331B9400BB12C8 /* HJExcelTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

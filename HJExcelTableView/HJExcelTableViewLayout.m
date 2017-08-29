@@ -8,6 +8,7 @@
 
 #import "HJExcelTableViewLayout.h"
 #import "HJExcelHeadView.h"
+#import "HJExcelFootView.h"
 
 #ifndef ScreenWidth
 // 屏幕宽度
@@ -106,6 +107,12 @@ static const CGFloat kGreaterRadio = 0.75f;
 
 /*!
  @property
+ @abstract tableFooterView的高度。默认是0。如果HJExcelTableView设置了tableFooterView属性，才会有值
+ */
+@property (nonatomic, assign) CGFloat tableFooterViewHeight;
+
+/*!
+ @property
  @abstract 所有的cell
  */
 @property (nonatomic, strong) NSMutableArray *attributes;
@@ -157,6 +164,12 @@ static const CGFloat kGreaterRadio = 0.75f;
  @abstract excelHeadView
  */
 @property (nonatomic, weak) HJExcelHeadView *excelHeadView;
+
+/*!
+ @property
+ @abstract excelHeadView
+ */
+@property (nonatomic, weak) HJExcelFootView *excelFootView;
 
 /*!
  @property
@@ -294,6 +307,14 @@ static const CGFloat kGreaterRadio = 0.75f;
                 [self.attributes addObject:layoutes];
             }
             
+            // 有footerView，就计算footerView的y值
+            if (self.hasTableFooterView) {
+                HJExcelTableViewSectionModel *lastSectionModel = self.sectionModels.lastObject;
+                CGRect footRect = self.excelFootView.frame;
+                footRect.origin.y = CGRectGetMaxY(lastSectionModel.lastAttributesLayout.frame);
+                self.excelFootView.frame = footRect;
+            }
+            
             self.realContentSize = [self calculateContentSize];
         }
     }
@@ -329,6 +350,12 @@ static const CGFloat kGreaterRadio = 0.75f;
         CGRect headerViewFrame = self.excelHeadView.frame;
         headerViewFrame.origin.x = self.collectionView.contentOffset.x;
         self.excelHeadView.frame = headerViewFrame;
+    }
+    
+    if (self.hasTableFooterView && self.enableStickTableFooterView) {
+        CGRect footerViewFrame = self.excelFootView.frame;
+        footerViewFrame.origin.x = self.collectionView.contentOffset.x;
+        self.excelFootView.frame = footerViewFrame;
     }
     
     return self.visibleAttributes;
@@ -436,6 +463,18 @@ static const CGFloat kGreaterRadio = 0.75f;
     }
 }
 
+- (void)setHasTableFooterView:(BOOL)hasTableFooterView {
+    _hasTableFooterView = hasTableFooterView;
+    NSArray *subviews = self.collectionView.subviews;
+    for (UIView *subView in subviews) {
+        if ([subView isKindOfClass:[HJExcelFootView class]]) {
+            self.excelFootView= (HJExcelFootView *)subView;
+            self.tableFooterViewHeight = CGRectGetHeight(subView.frame);
+            break;
+        }
+    }
+}
+
 #pragma mark - Private Method
 - (BOOL)greaterWidthWithStickColumn:(NSInteger)stickColumn columnWidths:(NSArray<NSNumber *> *)columnWidths {
     CGFloat calculateWidth = 0;
@@ -469,6 +508,10 @@ static const CGFloat kGreaterRadio = 0.75f;
     // 只加最后一个footer的高度
     if (self.sectionFooterViewHeight) {
         contentH += self.sectionFooterViewHeight;
+    }
+    
+    if (self.hasTableFooterView) {
+        contentH += CGRectGetHeight(self.excelFootView.frame);
     }
     
     // +0.5是让宽度稍微大于屏幕的宽度，这样会有反馈的效果

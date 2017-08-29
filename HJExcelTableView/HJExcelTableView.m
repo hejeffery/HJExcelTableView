@@ -119,9 +119,23 @@ typedef NS_ENUM(NSUInteger, Direction) {
     }
 }
 
+- (void)setTableFooterView:(HJExcelFootView *)tableFooterView {
+    _tableFooterView = tableFooterView;
+    if (tableFooterView) {
+        tableFooterView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableFooterView.frame), CGRectGetHeight(tableFooterView.frame));
+        [self.collectionView addSubview:tableFooterView];
+        self.excelTableViewLayout.hasTableFooterView = YES;
+    }
+}
+
 - (void)setEnableStickTableHeaderView:(BOOL)enableStickTableHeaderView {
     _enableStickTableHeaderView = enableStickTableHeaderView;
     self.excelTableViewLayout.enableStickTableHeaderView = enableStickTableHeaderView;
+}
+
+- (void)setEnableStickTableFooterView:(BOOL)enableStickTableFooterView {
+    _enableStickTableFooterView = enableStickTableFooterView;
+    self.excelTableViewLayout.enableStickTableFooterView = enableStickTableFooterView;
 }
 
 - (void)setHeaderViewHeightOfSection:(CGFloat)headerViewHeightOfSection {

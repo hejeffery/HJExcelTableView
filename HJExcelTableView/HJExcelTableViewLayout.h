@@ -30,6 +30,18 @@
 
 /*!
  @property
+ @abstract 是否有tableFooterView，默认是NO
+ */
+@property (nonatomic, assign) BOOL hasTableFooterView;
+
+/*!
+ @property
+ @abstract FooterView在X方向上是否固定，默认是NO，不固定
+ */
+@property (nonatomic, assign) BOOL enableStickTableFooterView;
+
+/*!
+ @property
  @abstract 每个Section的HeaderView的高度
  */
 @property (nonatomic, assign) CGFloat sectionHeaderViewHeight;

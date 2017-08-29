@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HJExcelTableViewCell.h"
 #import "HJExcelHeadView.h"
+#import "HJExcelFootView.h"
 #import "HJExcelReusableView.h"
 
 @protocol HJExcelTableViewDataSource;
@@ -73,6 +74,13 @@
 
 /*!
  @property
+ @abstract TableFooterView
+ @discussion 类似TableView的tableFooterView，属于整个HJExcelTableView，而非某个Section的FooterView
+ */
+@property (nonatomic, strong) HJExcelFootView *tableFooterView;
+
+/*!
+ @property
  @abstract Section HeaderView的高度，默认是0
  @discussion 如果需要在每个section上显示headerView，需要设置值，否则不显示。并且实现代理方法
              - (HJExcelReusableView *)excelTableView:(HJExcelTableView *)excelTableView viewForHeaderAtIndexPath:(NSIndexPath *)indexPath。
@@ -94,6 +102,12 @@
  @abstract TableHeaderView在X方向上是否固定，默认是NO，不固定
  */
 @property (nonatomic, assign) BOOL enableStickTableHeaderView;
+
+/*!
+ @property
+ @abstract TableFooterView在X方向上是否固定，默认是NO，不固定
+ */
+@property (nonatomic, assign) BOOL enableStickTableFooterView;
 
 /*!
  @property
