@@ -58,6 +58,13 @@
  */
 @property (nonatomic, weak) id<HJExcelTableViewLayoutDelegate> delegate;
 
+/*!
+ @method
+ @abstract 刷新数据
+
+ */
+- (void)reload;
+
 @end
 
 @protocol HJExcelTableViewLayoutDelegate <NSObject>

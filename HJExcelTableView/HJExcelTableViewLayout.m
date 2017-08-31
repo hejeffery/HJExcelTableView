@@ -450,6 +450,18 @@ static const CGFloat kGreaterRadio = 0.75f;
     return self.realContentSize;
 }
 
+#pragma mark - Public Method
+- (void)reload {
+    [self.attributes removeAllObjects];
+    [self.visibleAttributes removeAllObjects];
+    [self.sectionModels removeAllObjects];
+    self.realContentSize = CGSizeZero;
+    self.visibleRect = CGRectZero;
+    self.visibleWidth = 0.0f;
+    self.visibleHeight = 0.0f;
+    [self prepareLayout];
+}
+
 #pragma mark - Getter/Setter
 - (void)setHasTableHeaderView:(BOOL)hasTableHeaderView {
     _hasTableHeaderView = hasTableHeaderView;

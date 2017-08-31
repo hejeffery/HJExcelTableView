@@ -177,6 +177,7 @@ typedef NS_ENUM(NSUInteger, Direction) {
 
 - (void)reloadData {
     [self.collectionView reloadData];
+    [self.excelTableViewLayout reload];
 }
 
 #pragma mark - UICollectionViewDataSource
